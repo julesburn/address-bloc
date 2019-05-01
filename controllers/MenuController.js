@@ -10,6 +10,7 @@ module.exports = class MenuController {
         choices: [
           "Add New Contact",
           "Time and Date",
+          "Remind Me",
           "Exit"
         ]
       }
@@ -26,6 +27,9 @@ module.exports = class MenuController {
           break;
         case "Time and Date":
           this.getDate();
+          break;
+        case "Remind Me":
+          this.remindMe();
           break;
         case "Exit":
           this.exit();
@@ -56,6 +60,13 @@ module.exports = class MenuController {
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
     console.log("It is currently "+Date());
+    this.main();
+  }
+
+  remindMe(){
+    this.clear();
+    console.log("Learning is a lifelong pursuit.")
+    return("Learning is a lifelong pursuit.")
     this.main();
   }
 
