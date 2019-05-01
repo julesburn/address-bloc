@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const ContactController = require("./ContactController");
 
 module.exports = class MenuController {
   constructor(){
@@ -15,7 +16,7 @@ module.exports = class MenuController {
         ]
       }
     ];
-    this.contacts = [];
+    this.book = new ContactController();
   }
 
   main(){
@@ -66,8 +67,8 @@ module.exports = class MenuController {
   remindMe(){
     this.clear();
     console.log("Learning is a lifelong pursuit.")
-    return("Learning is a lifelong pursuit.")
     this.main();
+    return("Learning is a lifelong pursuit.")
   }
 
   exit(){
