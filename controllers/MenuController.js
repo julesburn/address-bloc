@@ -50,15 +50,8 @@ module.exports = class MenuController {
 
   addContact(){
     this.clear();
-    inquirer.prompt(this.book.addContactQuestions).then((answers) => {
-      this.book.addContact(answers.name, answers.phone).then((contact) => {
-        console.log("Contact added successfully!");
-        this.main();
-      }).catch((err) => {
-        console.log(err);
-        this.main();
-      });
-    });
+    console.log('addContact called');
+    this.main();
   }
 
   getDate(){
