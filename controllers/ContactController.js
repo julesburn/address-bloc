@@ -5,12 +5,6 @@ module.exports = class ContactController {
 
   constructor() {
     this.contacts = [];
-<<<<<<< HEAD
-  }
-
-  addContact(name, phone){
-    return Contact.create({name, phone})
-=======
     this.addContactQuestions = [
   {
     type: "input",
@@ -41,7 +35,6 @@ module.exports = class ContactController {
 
   addContact(name, phone, email){
     return Contact.create({name, phone, email})
->>>>>>> d743e0337f3aa76ecf8f38c0b42b7a3d64a3c40e
   }
 
 }
