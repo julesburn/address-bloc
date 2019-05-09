@@ -33,6 +33,6 @@ describe("ContactController", () => {
         .catch((err) => {
           done();
         });
-      });
     });
-  });
+  })
+})
