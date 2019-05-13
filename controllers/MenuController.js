@@ -11,6 +11,7 @@ module.exports = class MenuController {
         choices: [
           "Add New Contact",
 		  "View All Contacts",
+		  "Search Contacts",
           "Time and Date",
           "Remind Me",
           "Exit"
@@ -29,6 +30,9 @@ module.exports = class MenuController {
           break;
 		case "View All Contacts":
 		  this.getContacts();
+		  break;
+		case "Search Contacts":
+		  this.search();
 		  break;
         case "Time and Date":
           this.getDate();
@@ -82,6 +86,41 @@ module.exports = class MenuController {
         console.log(err);
         this.main();
       });
+    }
+
+	search(){
+      inquirer.prompt(this.book.searchQuestions)
+      .then((target) => {
+       this.book.search(target.name)
+       .then((contact) => {
+          if(contact === null){
+            this.clear();
+            console.log("contact not found");
+            this.search();
+          } else {
+            this.showContact(contact);
+         }
+
+        });
+     })
+     .catch((err) => {
+       console.log(err);
+       this.main();
+     });
+    }
+
+    showContact(contact){
+      this._printContact(contact);
+    }
+
+    _printContact(contact){
+      console.log(`
+        name: ${contact.name}
+        phone number: ${contact.phone}
+        email: ${contact.email}
+        ---------------`
+      );
+	  this.main();
     }
 
   getDate(){
