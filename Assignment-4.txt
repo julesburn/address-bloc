@@ -1,0 +1,15 @@
+1. Performing a search of a sorted by name IRS database for a taxpayer name
+
+A binary search would be the best option for this. Because the list is already sorted alphabetically and contains many items, a binary search would be the fastest option rather than iterating over each name.
+
+2. Searching through an unsorted list containing the days of the weekend
+
+An iterative approach would be best for this search. With a short list (I'm assuming two items? Saturday and Sunday?) there is no need to sort the list and execute a binary search.
+
+3. Given a list of the planets in the Milky Way in ascending order by size, search for a planet with a given size.
+
+This would be a large list, there are a lot of plaents out there, and it is already sorted, so a binary search would be the most efficient. I would choose a binary search here, because with a list of thousands, dividing it in half each iteration of the loop would be a lot faster than just iterating through the list.
+
+4. Searching for a checkpoint name in an unsorted list of Bloc checkpoints
+
+An iterative search would be just fine here, because the list of Bloc checkpoints is not terribly long, certainly not as long as the list in question 3. We could sort the list alphabetically for a binary search, but I think that an iterative search that doesn't require the user's input to exactly equal the name of the checkpoint would be more efficient. This kind of search would take the user's input, and then iterate through the Bloc checkpoints, returning any checkpoint that contains the user's input.
