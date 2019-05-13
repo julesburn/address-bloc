@@ -69,8 +69,8 @@ module.exports = class MenuController {
     });
   }
 
-      getContacts(){
-      this.clear();
+  getContacts(){
+    this.clear();
 
       this.book.getContacts().then((contacts) => {
         for (let contact of contacts) {
@@ -105,12 +105,31 @@ module.exports = class MenuController {
      })
      .catch((err) => {
        console.log(err);
-       this.main();
+	   this.main();
      });
     }
 
     showContact(contact){
       this._printContact(contact);
+
+	  inquirer.prompt(this.book.showContactQuestions)
+    .then((answer) => {
+      switch(answer.selected){
+        case "Delete contact":
+          this.delete(contact);
+          break;
+        case "Main menu":
+          this.main();
+          break;
+        default:
+          console.log("Something went wrong.");
+          this.showContact(contact);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      this.showContact(contact);
+    });
     }
 
     _printContact(contact){
@@ -120,8 +139,26 @@ module.exports = class MenuController {
         email: ${contact.email}
         ---------------`
       );
-	  this.main();
     }
+
+  delete(contact){
+    inquirer.prompt(this.book.deleteConfirmQuestions)
+    .then((answer) => {
+      if(answer.confirmation){
+        this.book.delete(contact.id);
+        console.log("Contact deleted!");
+        this.main();
+      } else {
+        console.log("Deletion unsuccessful.");
+        this.showContact(contact);
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+        this.main();
+      });
+    }
+
 
   getDate(){
     this.clear();
